@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details Summary</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="head">
+            <img src="https://adex.org.in/wp-content/uploads/2022/12/adex-logo.png" alt="ADeX_img" class="adex1">
+            <h3 class="heading">Employee Summary</h3>
+        </div>
+
+        <hr>
+        <br>
+        <div>
+            <div class="inner_container">
+                <div class="employee-details">
+                    <center><h4 class="mt-2"><strong>Employee Details</strong></h4></center>
+                    <hr>
+                    <div id="summaryData"></div>
+                </div>
+            </div>
+            <br><br>
+            <div class="inner_container1">
+                <div class="employee-details1">
+                    <center><h4 class="mt-2"><strong>Additional Details</strong></h4></center>
+                    <hr>
+                    <div id="additional"></div>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="mt-4 footex">
+            <button type="button" class="btn mr-2" id="editButton">Edit</button>
+            <button type="button" class="btn" id="downloadButton">Download JSON</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <script>
+
+        // Retrieve form data from localStorage
+        const formData = JSON.parse(localStorage.getItem('formData'));
+
+        // Generate summary HTML
+        const summaryHTML = `
+            <p><strong>Employee ID:</strong> ${formData.employeeId}</p>
+            <p><strong>Employee Email:</strong> ${formData.employeeEmail}</p>
+            <p><strong>Employee Name:</strong> ${formData.employeeName}</p>
+            <p><strong>Employee Phone Number:</strong> ${formData.employeePhone}</p>
+            <p><strong>Joining Date:</strong> ${formData.joiningDate}</p>
+            <p><strong>Age:</strong> ${formData.age}</p>
+            <p><strong>Type of Employment:</strong> ${formData.employmentType}</p>
+            <p><strong>Programming Languages:</strong> ${formData.programmingLanguages}</p>
+        `;
+
+        const additional = `
+        <p><strong>Employee Certificate:</strong> ${formData.certificate}</p>
+            <p><strong>Employee City:</strong> ${formData.city}</p>
+            <p><strong>Alternate Tel Number:</strong> ${formData.alternatePhone}</p>
+            `;
+
+        // Display summary data
+        document.getElementById('summaryData').innerHTML = summaryHTML;
+        document.getElementById('additional').innerHTML = additional;
+
+
+        // Handle the edit button click event
+        document.getElementById('editButton').addEventListener('click', handleEditButtonClick);
+
+        // Handle the download button click event
+        document.getElementById('downloadButton').addEventListener('click', handleDownloadButtonClick);
+
+        // Function to handle the edit button click event
+        function handleEditButtonClick() {
+            window.location.href = 'index.html'; // Redirect to the form page
+        }
+
+        // Function to handle the download button click event
+        function handleDownloadButtonClick() {
+            const jsonContent = JSON.stringify(formData, null, 2); // Convert to JSON string with indentation
+            const blob = new Blob([jsonContent], { type: 'application/json' }); // Create a blob with JSON content
+            const url = URL.createObjectURL(blob); // Create object URL for the blob
+
+            // Create a temporary link element to trigger the download
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'employee_data.json';
+            link.click();
+
+            // Cleanup by revoking the object URL
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

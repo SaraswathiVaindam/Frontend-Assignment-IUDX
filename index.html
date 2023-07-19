@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Consent</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link rel="stylesheet" href="css/virtual-select.min.css">
+</head>
+<body>
+    
+  
+    <div class="container">
+        <div class="head">
+            <img src="https://adex.org.in/wp-content/uploads/2022/12/adex-logo.png" alt="ADeX_img" class="adex">
+            <h2 class="heading">Employee Consent</h2>
+        </div>
+
+        <hr>
+        
+        <div class="side-heading">
+          <div class="side-bg">
+          <h3 class="headingg">Employee Details</h3>
+        </div>
+        <div><p class="field">* Required Fields</p></div>
+        </div>
+
+        <div class="employee-details">
+            <form id="employeeForm">
+                <div class="form-row">
+                  <div class="input_box col-md-6">
+                    <div class="box form-group">
+                      <label for="employeeId" class="required-field">Employee ID</label>
+                      <input type="text" class="formx" id="employeeId" required pattern="[0-9]{7}" title="7digit number. No alphabets">
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 input_box">
+                    <div class="form-group box">
+                      <label for="employeeEmail" class="required-field">Employee Email</label>
+                      <input type="email" class="formx" id="employeeEmail" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="input_box col-md-6">
+                    <div class="form-group box">
+                      <label for="employeeName" class="required-field">Employee Name</label>
+                    <input type="text" class="formx" id="employeeName" required pattern="[a-zA-Z ]+" title="Should contain only alphabets">
+                    </div>
+                    
+                  </div>
+                  <div class="input_box col-md-6">
+                    <div class="form-group box">
+                      <label for="employeePhone" class="required-field">Employee Phone Number</label>
+                    <input type="tel" class="formx" id="employeePhone" required pattern="[+][0-9]{10}" title="Valid Format: + 10 digits">
+                    </div>
+                    
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="input_box col-md-6">
+                    <div class="form-group box">
+                      <label for="joiningDate" class="required-field">Employee Joining Date</label>
+                    <input type="date" class="formx" id="joiningDate" required title="Should not less than 1 month.">
+                    </div>
+                    
+                  </div>
+                  <div class="input_box col-md-6">
+                    <div class="form-group box">
+                      <label for="age" class="required-field">Age</label>
+                    <input type="number" class="formx" id="age" required min="22" title="Age should not be less than 22">
+                    </div>
+                    
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="input_box col-md-6">
+                    <div class="form-group box">
+                      <label for="employmentType" class="rfield">Type of Employment</label>
+                      <select class="formxx" name="native-select" id="employmentType" placeholder="Select" data-search="false" data-silent-initial-value-set="true">
+                        <option value="Full-Time">Full-Time</option>
+                        <option value="Contract based">Contract based</option>
+                      </select>
+                    </div>
+                    
+                  </div>
+                  <div class="input_box col-md-6">
+                    <div class="form-group box">
+                      <label for="multipleSelect" class="required-field">Prog Languages</label>
+                      <select class="formxx" id="multipleSelect" multiple name="native-select" data-search="true" data-silent-initial-value-set="true">
+                        <option value="C">C</option>
+                        <option value="Java">Java</option>
+                        <option value="DotNet">DotNet</option>
+                        <option value="Python">Python</option>
+                        <option value="HTML">HTML</option>
+                        <option value="CSS">CSS</option>
+                        <option value="PHP">PHP</option>
+                      </select>
+                    </div>
+                    
+                   
+                  </div>
+                </div>
+
+                <div class="side-heading">
+                  <div class="side-bg1">
+                  <h3 class="headingg">Additional Details (Optional)</h3>
+                </div>
+                </div>  
+
+                <label for="certificate" class="certificate">Employee Certificate</label>
+                <div class="form-row">
+                    <div class="input_box col-sm-12">
+                      <div class="form-group">
+                      <input type="file" class="formy customButton" id="certificate">
+                      </div>
+                  </div>
+                  
+                </div>  
+                
+                <div class="form-row">
+                  <div class="input_box col-md-6">
+                    <div class="box form-group">
+                      <label for="city" class="rfield">Employee City</label>
+                    <input type="text" class="formx" id="city">
+                    </div>
+                  </div>
+
+                  <div class="input_box col-md-6">
+                    <div class="box form-group">
+                      <label for="alternatePhone" class="rfield">Alternate Tel Number</label>
+                    <input type="tel" class="formx" id="alternatePhone">
+                    </div>
+                    
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <center><button type="submit" class="btn" onsubmit="saveFormData()" id="submit_btn">Submit</button></center>
+                </div>
+              </form>
+        </div>
+
+      </div>
+
+      <script type="text/javascript" src="js/virtual-select.min.js"></script>
+      <script type="text/javascript" src="script.js"></script>
+
+      <script>
+        VirtualSelect.init({ 
+  ele: '#multipleSelect' 
+});
+
+VirtualSelect.init({ 
+  ele: '#employmentType' 
+});
+      </script>
+    
+    
+
+</body>
+</html>
+
+
+
